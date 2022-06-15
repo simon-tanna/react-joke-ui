@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const jokeAPI = axios.create({
-	baseURL: 'http://localhost:3000'
+	baseURL: 'https://joke-api-lesson-deploy.herokuapp.com/'
 });
 
 jokeAPI.interceptors.request.use((req) => {
