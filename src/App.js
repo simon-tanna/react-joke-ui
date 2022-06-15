@@ -11,18 +11,25 @@ import SignIn from "./components/SignIn";
 import NewJoke from "./components/NewJoke";
 import NewUser from "./components/NewUser";
 import { Header } from "./components/Styled";
+import { getCategories } from "./services/categoryServices";
 
 const App = () => {
 	const initialState = {
 		jokes: [],
+		categories: [],
 		loggedInUser: sessionStorage.getItem("user") || null,
-		auth: {token: sessionStorage.getItem("token") || null},
+		auth: { token: sessionStorage.getItem("token") || null },
 	};
 	const [store, dispatch] = useReducer(stateReducer, initialState);
 	const [randomJoke, setRandomJoke] = useState(null);
 	useEffect(() => {
 		getJokes()
 			.then((jokes) => dispatch({ type: "setJokes", data: jokes }))
+			.catch((error) => console.log(error));
+		getCategories()
+			.then((categories) =>
+				dispatch({ type: "setCategories", data: categories })
+			)
 			.catch((error) => console.log(error));
 	}, []);
 

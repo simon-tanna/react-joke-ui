@@ -45,6 +45,12 @@ export default function reducer(state, action) {
 				},
 			};
 		}
+		case "setCategories": {
+			return {
+				...state,
+				categories: action.data,
+		}
+	}
 		default:
 			return state;
 	}
